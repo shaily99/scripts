@@ -7,7 +7,7 @@
 if [[ `hostname` != "babel-login-*.lti.cs.cmu.edu" ]]; then
     conda create -n myenv
     conda activate myenv
-    conda install pytorch pytorch-cuda=12.1 -c pytorch -c nvidia
+    conda install pytorch pytorch-cuda=11.8 -c pytorch -c nvidia
     conda install numpy
     conda install pandas
     conda install argparse
