@@ -4,12 +4,18 @@
 #SBATCH --mem=64Gb
 #SBATCH -t 2-00:00:00              # time limit: (D-HH:MM) 
 #SBATCH --job-name=llama7b
-#SBATCH --error=logs/llama7b.%j.err
-#SBATCH --output=logs/llama7b.%j.out
+#SBATCH --error=logs/llama7b.err
+#SBATCH --output=logs/llama7b.out
 
-mkdir -p /scratch/ayerukol
+mkdir -p /scratch/shailyjb
 source ~/miniconda3/etc/profile.d/conda.sh
-conda activate /home/ltjuatja/miniconda3/envs/tgi-env-test
 
-cd /home/ayerukol/text-generation-inference
-text-generation-launcher --model-id meta-llama/Llama-2-7b-hf --port 9865 --quantize bitsandbytes --shard-uds-path /scratch/ayerukol/tgi-uds-socket-2 --huggingface-hub-cache /data/tir/projects/tir2/models/tgi_cache/hub/
+conda activate /data/tir/projects/tir6/general/pfernand/conda/envs/tgi-env-public
+
+cd /home/shailyjb/text-generation-inference
+text-generation-launcher \
+    --model-id meta-llama/Llama-2-7b-hf \
+    --port 9865 \
+    --quantize bitsandbytes \
+    --shard-uds-path /scratch/shailyjb \
+    --huggingface-hub-cache /data/tir/projects/tir5/users/shailyjb/tgi_cache/hub
