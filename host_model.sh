@@ -3,9 +3,9 @@
 #SBATCH --partition=general
 #SBATCH --mem=64GB
 #SBATCH --time 1-00:00:00              # time limit: (D-HH:MM) 
-#SBATCH --job-name=vicuna7b
-#SBATCH --error=/home/shailyjb/logs/vicuna7b.err
-#SBATCH --output=/home/shailyjb/logs/vicuna7b.out
+#SBATCH --job-name=llama2_7b
+#SBATCH --error=/home/shailyjb/logs/llama2_7b.err
+#SBATCH --output=/home/shailyjb/logs/llama2_7b.out
 #SBATCH --mail-type=END
 #SBATCH --mail-user=shailyjb@andrew.cmu.edus
 
@@ -16,14 +16,15 @@ conda activate /data/tir/projects/tir6/general/pfernand/conda/envs/tgi-env-publi
 
 cd /home/shailyjb/text-generation-inference
 
-PORT=8081
+PORT=8080
 if ss -tulwn | grep -q ":$PORT "; then
     echo "Port $PORT is already in use. Exiting..."
     exit 1
 else
     text-generation-launcher \
-        --model-id lmsys/vicuna-7b-v1.5 \
+        --model-id meta-llama/Llama-2-7b-hf \
         --port $PORT \
         --quantize bitsandbytes \
         --shard-uds-path /scratch/shailyjb \
         --huggingface-hub-cache /data/datasets/models/hf_cache
+fi
