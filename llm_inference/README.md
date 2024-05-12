@@ -43,7 +43,8 @@ This is essentially similar to running inference on the OpenAI API. Simply insta
 - - Don’t pass “” (empty string) as key or it wont work
 - Here `base_url` is address of type: `http://babel-x-x:PORT/v1`
 
-Code example to run async inference: 
+Code example to run async inference: llm_inference/query_vllm.py
+
 
 ### Information sources
 - [A random blog I found on reddit](https://ploomber.io/blog/vllm-deploy/)
