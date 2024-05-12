@@ -25,7 +25,9 @@ Steps:
     - `pip install packaging`
     - `pip uninstall -y ninja && pip install ninja`
     - `MAX_JOBS=4 pip install flash-attn --no-build-isolation`
+      
       > Make sure to run with MAX_JOBS=4
+    
 - Install vllm: `pip install vllm`
 
 ### Serving model using vLLM:
@@ -40,10 +42,10 @@ Model serving script: [llm_inference/host_model_vllm.sh](https://github.com/shai
 This is essentially similar to running inference on the OpenAI API. Simply instantiate the Client with an psuedo key and base URL of hosted model: `client = AsyncOpenAI(api_key="EMPTY", base_url=args.base_url)` 
 
 - Both OpenAI client or AsyncOpenAI clients work, but Async client is faster when running larger number of queries
-- - Don’t pass “” (empty string) as key or it wont work
+- Don’t pass “” (empty string) as key or it wont work
 - Here `base_url` is address of type: `http://babel-x-x:PORT/v1`
 
-Code example to run async inference: llm_inference/query_vllm.py
+Code example to run async inference: [llm_inference/query_vllm.py](https://github.com/shaily99/scripts/blob/195abe1b68153010cb6c44bed85b67c972b3e49f/llm_querying/query_vllm.py)
 
 
 ### Information sources
