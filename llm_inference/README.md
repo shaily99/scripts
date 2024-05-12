@@ -30,7 +30,7 @@ Steps:
 
 ### Serving model using vLLM:
 
-Model serving script: llm_inference/host_model_vllm.sh
+Model serving script: [llm_inference/host_model_vllm.sh](https://github.com/shaily99/scripts/blob/c4d46ffa7e505f9186dc8d429693f87af8ef4da4/llm_inference/host_model_vllm.sh)
 
 - `-—download_dir` = where the model weights will be downloaded. This can be set to shared model cache on babel.
 - Further information: [Other command line args that can be set when deploying](https://docs.vllm.ai/en/latest/serving/openai_compatible_server.html#command-line-arguments-for-the-server)
