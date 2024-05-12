@@ -30,9 +30,20 @@ Steps:
 
 ### Serving model using vLLM:
 
-Model serving script: 
+Model serving script: llm_inference/host_model_vllm.sh
+
 - `-—download_dir` = where the model weights will be downloaded. This can be set to shared model cache on babel.
 - Further information: [Other command line args that can be set when deploying](https://docs.vllm.ai/en/latest/serving/openai_compatible_server.html#command-line-arguments-for-the-server)
+- Note the node and port you end up running on, as this will create the URL to query. It does get output in the logs once the model is connected
+
+### Running Inference:
+This is essentially similar to running inference on the OpenAI API. Simply instantiate the Client with an psuedo key and base URL of hosted model: `client = AsyncOpenAI(api_key="EMPTY", base_url=args.base_url)` 
+
+- Both OpenAI client or AsyncOpenAI clients work, but Async client is faster when running larger number of queries
+- - Don’t pass “” (empty string) as key or it wont work
+- Here `base_url` is address of type: `http://babel-x-x:PORT/v1`
+
+Code example to run async inference: 
 
 ### Information sources
 - [A random blog I found on reddit](https://ploomber.io/blog/vllm-deploy/)
@@ -46,6 +57,7 @@ Model serving script:
 #### Cons:
 1. AFAIK they do not support getting log probabilities
 2. (LMK if you know any others)
+
 
 ## TGI
 
