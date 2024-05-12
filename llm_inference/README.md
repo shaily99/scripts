@@ -74,11 +74,14 @@ It is long and sometimes tricky. Some notes that I took along the way:
 - Never touch the env from a different project code. Only activate it in model hosting script.
 
 ### Hosting Models
+
+Script: [llm_inference/host_model_lti_tgi.sh](https://github.com/shaily99/scripts/blob/1addd2102f369c1a3ad37f3b793966e850c52008/llm_inference/host_model_lti_tgi.sh)
+
 Steps:
 - Run an interactive session
 - Fork the github repo: `git cone https://github.com/CoderPat/text-generation-inference.git` (only once)
 - cd into the above repo and [Install client](https://github.com/CoderPat/text-generation-inference/tree/main?tab=readme-ov-file#getting-started): `cd clients/python` and `pip install .`
-- Launch model with this script: https://github.com/shaily99/scripts/blob/main/host_model.sh
+- Launch model with this script: [llm_inference/host_model_lti_tgi.sh](https://github.com/shaily99/scripts/blob/1addd2102f369c1a3ad37f3b793966e850c52008/llm_inference/host_model_lti_tgi.sh)
 - Once this is done, the model should show up on Central
 
 
