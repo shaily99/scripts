@@ -52,18 +52,34 @@ Code example to run async inference: [llm_inference/query_vllm.py](https://githu
 - [A random blog I found on reddit](https://ploomber.io/blog/vllm-deploy/)
 - [Sotopia repo](https://github.com/sotopia-lab/sotopia-pi/tree/main/llm_deploy#deploy-models-on-babel-via-vllm-api-server)
 
-#### Pros:
+### Pros:
 1. Pretty fast
 2. Inference is through OpenAI compatible server - which means you can use the same code for querying other models that you use for bulk-querying OpenAI API
 3. Large numbers of models are seamlessly supported
    
-#### Cons:
+### Cons:
 1. AFAIK they do not support getting log probabilities
 2. (LMK if you know any others)
 
 
 ## TGI
 
+### Installation
+[Installation instructions](https://github.com/CoderPat/text-generation-inference/tree/main?tab=readme-ov-file#running-your-own-servers) on the repo readme are pretty detailed; and following them would work.
+
+It is long and sometimes tricky. Some notes that I took along the way:
+- Run the installation an interactive session on a GPU node.
+- Takes a few hrs; dont let machine sleep and terminal disconnect
+    - Alternatively: put the commands and run it in a sbatch script (I think I tied this but I dont remember if it worked).
+- Never touch the env from a different project code. Only activate it in model hosting script.
+
+### Hosting Models
+Steps:
+- Run an interactive session
+- Fork the github repo: `git cone https://github.com/CoderPat/text-generation-inference.git` (only once)
+- cd into the above repo and [Install client](https://github.com/CoderPat/text-generation-inference/tree/main?tab=readme-ov-file#getting-started): `cd clients/python` and `pip install .`
+- Launch model with this script: https://github.com/shaily99/scripts/blob/main/host_model.sh
+- Once this is done, the model should show up on Central
 
 
 #### Pros:
