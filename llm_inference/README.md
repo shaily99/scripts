@@ -32,7 +32,7 @@ Steps:
 
 Model serving script: 
 - `-—download_dir` = where the model weights will be downloaded. This can be set to shared model cache on babel.
-- Further information: [Command line args for deploying](https://docs.vllm.ai/en/latest/serving/openai_compatible_server.html#command-line-arguments-for-the-server)
+- Further information: [Other command line args that can be set when deploying](https://docs.vllm.ai/en/latest/serving/openai_compatible_server.html#command-line-arguments-for-the-server)
 
 ### Information sources
 - [A random blog I found on reddit](https://ploomber.io/blog/vllm-deploy/)
