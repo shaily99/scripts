@@ -16,7 +16,7 @@ Methods:
 
 Steps:
 - Run an interactive session on a GPU node
-- Create new environment (make sure to check docs for latest python version recommendation: `conda create -n vllm python=3.9` 
+- Create new environment (make sure to check docs for latest python version recommendation: `conda create -n vllm python=3.9`)
 - *Switch to created env - dont install in base by mistake!*
 - Install pip: `conda install pip`
 - Load Cuda (check docs for recommneded cuda version): `module load cuda-12.1` 
@@ -48,9 +48,20 @@ This is essentially similar to running inference on the OpenAI API. Simply insta
 Code example to run async inference: [llm_inference/query_vllm.py](https://github.com/shaily99/scripts/blob/195abe1b68153010cb6c44bed85b67c972b3e49f/llm_querying/query_vllm.py)
 
 
+
+### Compute / RPM Configurations
+
+Typically depends on size of model. The RPM rate is trial and error, and depends on the number of output tokens generated per prompt and also number of prompt tokens. Some configurations that have worked for me in the past:
+
+1. Llama 2/3 8/13 B: one A6000 (46G vRAM) to host; rpm = 300 for 100 tokens and 5 responses per prompt, 10-15 input tokens
+2. Llama 70B: haven't tried properly, but needs multi-GPU hosting.
+3. Gemma 2B: one A5000 (24G vRAM), RPM = 50-100 (dont remember), 10-15 input tokens, 1000 output tokens and 5 responses per prompt.
+4. Gemma 7B: one A100_80G (80G vRAM), RPM = 50, with 1000 output tokens and 5 responses per prompt with 10-15 input tokens. Note: Gemma’s repo says that 7B should work with 24G+ vRAM but it failed on A6000 for me for anything more than 5 RPM
+
 ### Information sources
 - [A random blog I found on reddit](https://ploomber.io/blog/vllm-deploy/)
 - [Sotopia repo](https://github.com/sotopia-lab/sotopia-pi/tree/main/llm_deploy#deploy-models-on-babel-via-vllm-api-server)
+
 
 ### Pros:
 1. Pretty fast
@@ -60,7 +71,6 @@ Code example to run async inference: [llm_inference/query_vllm.py](https://githu
 ### Cons:
 1. AFAIK they do not support getting log probabilities
 2. (LMK if you know any others)
-
 
 ## TGI
 
