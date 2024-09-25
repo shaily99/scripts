@@ -28,7 +28,7 @@ MODEL_NAME="gemma2B_it"
 PROMPTS="FILE"
 OUTPUT="FILE"
 
-python /home/shailyjb/intrinsic-bias-metaeval/stereoset_query.py \
+python query_vllm.py \
     --prompts="${PROMPTS}" \
     --output="${OUTPUT}" \
     --model=${MODEL} \
