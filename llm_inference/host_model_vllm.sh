@@ -13,6 +13,8 @@ mkdir -p /scratch/<YOUR ID>/<NAME OF SCRATCH DIR>
 source ~/miniconda3/etc/profile.d/conda.sh
 
 export HF_HOME=<DIR>/hf_cache # Ideally it helps to have <DIR> in `/data/..` on Babel to not overcrowd /home/.. directory
+export NCCL_P2P_DISABLE=1
+
 source ~/.bashrc
 
 HUGGINGFACE_TOKEN="<YOUR HF TOKEN>"
@@ -28,8 +30,8 @@ if ss -tulwn | grep -q ":$PORT "; then
     echo "Port $PORT is already in use. Exiting..."
     exit 1
 else
-    python -m vllm.entrypoints.openai.api_server \
-        --model $MODEL \
+    vllm serve \
+        $MODEL \
         --port $PORT \
         --download-dir <DIR> # Either shared model cache on babel or your own directory
 fi
